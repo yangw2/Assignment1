@@ -1,23 +1,20 @@
-
-#This function is the top-level function that will sequentially call each other function in the API. It sets up
-#the list of requested data from the inputs. Some of the inputs can be blank, but they are, in order,
-#the name of interest, the year range of interest, the gender, the race, the amount of names desired to be generated, and 
-#the style of sorting desired by the user. The output is all of these inputs formatted into a class called "nameInfo", which can
-#easily be passed to other functions 
-#this function will mostly just call 4 other functions
-def handleUserSearch(name, yearRange, gender, race, amountNames, sortingStyle) :
-    #object implemented later
-    nameInfoNew = new nameInfo(name, yearRange, gender, race, amountNames, sortingStyle)
-    return nameInfo
+from data import NameQuery, NameInfo
 
 #This function will format the name information list created above, and transform it into a NameQuery object, which we will use to 
 #handle user requests in an efficient manner.
 #input: a list of the desired name info
 #output: a NameQuery object containing the target information
-def createNameQuery(nameInfo) :
+def createNameQuery(name, yearRangeStart, yearRangeEnd, gender, race, amountNames, sortingStyle) :
     #this object will be implemented later
-    nq = new NameQuery(nameInfo)
+    nq = NameQuery(name,yearRangeStart,yearRangeEnd,gender,race,amountNames,sortingStyle)
     return nq
+
+#This function is the top-level function that will take in a nameQuery and output the final sorted list of names
+#It does little on its own but calls the below functions that get the actual data
+def createQueryResults(nameQuery):
+    #object implemented later
+    nameInfoList = [NameInfo()]
+    return nameInfoList
 
 #This function will take in a nameQuery object, and search through the database of names for names that fit
 #the specified parameters. 
@@ -29,15 +26,13 @@ def searchNames(NameQuery) :
 
 #This function sorts the results from searchNames into proper order from the information from nameQuery
 #Returns the sorted list containing nameInfo classes
-def sortNameResults(NameQuery, List<nameInfo>) :
-    return List<nameInfo>
+def sortNameResults(NameQuery, nameInfoList) :
+    return nameInfoList
 
 
 #This function will set the list of name results returned to the desired length - if the user is just 
 #curious about one name, then the list length will be one. The output is a trimmed list, the input is an untrimmed list 
 #and the nameQuery object
-def truncateNameResults(NameQuery, List<nameInfo>) :
-    return List<nameInfo>
-
-
+def truncateNameResults(NameQuery, nameInfoList) :
+    return nameInfoList
 
