@@ -6,7 +6,18 @@ class BabyNameAPI:
 
     def __init__(self,filename):
         with open(filename, newline='') as namesFile:
-            self.namesList = list(csv.DictReader(namesFile))
+            self.namesListUnprocessed = list(csv.DictReader(namesFile))
+
+    def process(self, namesListUnprocessed):
+            self.namesProcess = []
+            #we might need a "last in" to check whether we're on a new name
+            lastNameIn = ""
+
+            for name in self.namesListUnprocessed:
+                #in this case, the name object has not been created yet
+                if name != lastNameIn :
+                    self.namesProcess.append(NameInfo(str(name["Child's First Name"]), chr(name['Gender'], )))
+
         
     #This function will format the name information list created above, and transform it into a NameQuery object, which we will use to 
     #handle user requests in an efficient manner.
