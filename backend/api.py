@@ -6,7 +6,7 @@ from data import NameQuery, NameInfo
 #output: a NameQuery object containing the target information
 def createNameQuery(name, yearRangeStart, yearRangeEnd, gender, race, amountNames, sortingStyle) :
     #this object will be implemented later
-    nq = NameQuery(name,yearRangeStart,yearRangeEnd,gender,race,amountNames,sortingStyle)
+    nq = NameQuery(name,yearRangeStart,yearRangeEnd,gender,amountNames,race,sortingStyle)
     return nq
 
 #This function is the top-level function that will take in a nameQuery and output the final sorted list of names
