@@ -46,6 +46,9 @@ class BabyNameAPI:
 
 def main():
     testingAPI = BabyNameAPI("Popular_Baby_Names.csv")
-    print(testingAPI.namesList[0])
+    testList = []
+    for nameInfo in testingAPI.namesList:
+        if nameInfo["Child's First Name"] == "Aidan":
+            print(nameInfo)
 
 main()
