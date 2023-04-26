@@ -1,10 +1,14 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class NameInfo:
     name: str = "Jeff"
     sex: chr = "m"
-    dataByYear: dict(dict(str))
+    dataByYear: dict = field(default_factory= lambda: {
+        '2011' : {
+            'Asian' : 10
+        }
+    })
 
 @dataclass
 class NameQuery:

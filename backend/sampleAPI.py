@@ -78,3 +78,11 @@ if __name__ == "__main__":
     
     avgMagnitudeOfAllEarthquakes = quakes.getAverageQuakeMagnitudeByLocation()
     print("The average magnitude of all earthquakes over 2.5 magnitude this past month is %.1f" % avgMagnitudeOfAllEarthquakes)
+
+
+def main():
+    testAPI = EarthquakeAPI("earthquakeData.csv")
+    print("\n")
+    print(testAPI.getCountriesWithQuakesBetween(8,9))
+
+main()
