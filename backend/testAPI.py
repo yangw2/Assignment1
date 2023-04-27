@@ -37,6 +37,24 @@ class APITester(unittest.TestCase) :
         self.assertEqual(len(api.getNamesFromYears(yearList)), 0)
 
 
+    #test cases for ethnicities method
+    def test_Ethnicities(self) :
+        ethnicitiesList = ["WHITE NON HISPANIC", "HISPANIC"]
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertGreaterEqual(len(api.getEthnicities(ethnicitiesList)), 1)
+    
+    def test_Ethnicities_Bad_String(self) :
+        ethnicitiesList = ["BING BONG"]
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertEqual(len(api.getEthnicities(ethnicitiesList)), 0)
+    
+    def test_Ethnicities_Bad_Input(self) :
+        ethnicitiesList = [1]
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertEqual(len(api.getEthnicities(ethnicitiesList)), 0)
+
+
+
 
         
 
