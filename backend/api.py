@@ -6,17 +6,38 @@ class BabyNameAPI:
 
     def __init__(self,filename):
         with open(filename, newline='') as namesFile:
-            self.namesListUnprocessed = list(csv.DictReader(namesFile))
+            self.namesList = list(csv.DictReader(namesFile))
+    #at this point in the code: we have a list of dictionaries, keyed to each name/year/ethnicity/sex/number combo
 
-    def process(self, namesListUnprocessed):
-            self.namesProcess = []
-            #we might need a "last in" to check whether we're on a new name
-            lastNameIn = ""
-
-            for name in self.namesListUnprocessed:
-                #in this case, the name object has not been created yet
-                if name != lastNameIn :
-                    self.namesProcess.append(NameInfo(str(name["Child's First Name"]), chr(name['Gender'], {hello:4})))
+    def getNamesRankedAbove(self, lowerVal) :
+        '''
+        This function takes as an input a lower value for names, and returns all name instances (name with year, sex, ethnicity, and value)
+        with values equal to or greater than the lower value.
+        Input: a lower value
+        Output: a list of names that have greater or equal value than the input value
+        '''
+        names = []
+        #make sure the input is valid
+        if lowerVal <= 10 :
+            return names
+        for name in self.namesList :
+            amount = float(name["Count"])
+            if amount >= lowerVal :
+                names.append(name)
+        return names
+    
+    def getNamesFromYears(self, yearList) :
+        '''
+        Input: A list of years that the desired name objects should come from
+        Output: a list of names that come from the selected year(s) 
+        '''
+        names = []
+        #no need to sanitize input
+        for name in self.namesList :
+            year = int(name["Year of Birth"])
+            if year in yearList :
+                names.append(name)
+        return names
 
         
     #This function will format the name information list created above, and transform it into a NameQuery object, which we will use to 
@@ -55,11 +76,11 @@ class BabyNameAPI:
     def truncateNameResults(self,NameQuery, nameInfoList) :
         return nameInfoList
 
-def main():
-    testingAPI = BabyNameAPI("Popular_Baby_Names.csv")
-    testList = []
-    for nameInfo in testingAPI.namesListUnprocessed:
-        if nameInfo["Child's First Name"] == "Aidan":
-            print(nameInfo)
+# def main():
+#     testingAPI = BabyNameAPI("Popular_Baby_Names.csv")
+#     testList = []
+#     for nameInfo in testingAPI.namesListUnprocessed:
+#         if nameInfo["Child's First Name"] == "Aidan":
+#             print(nameInfo)
 
-main()
+# main()
