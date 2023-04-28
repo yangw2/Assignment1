@@ -62,7 +62,18 @@ class APITester(unittest.TestCase) :
         api = BabyNameAPI("Popular_Baby_Names.csv")
         self.assertEqual(len(api.getNamesFromName("BALALBALSDFLABSDFL")), 0)
 
+    #test cases for sex searching method
+    def test_Male_Sex_Input(self):
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertGreaterEqual(len(api.getNamesBySex("Male")), 1)
 
+    def test_Female_Sex_Input(self):
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertGreaterEqual(len(api.getNamesBySex("Female")), 1)
+
+    def test_Bad_Sex_Input(self):
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertEqual(len(api.getNamesBySex("blahblah")), 0)
 
         
 

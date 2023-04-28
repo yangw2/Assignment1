@@ -62,6 +62,17 @@ class BabyNameAPI:
             if (str(name["Child's First Name"]).lower() == nameInput.lower()):
                 names.append(name)
         return names
+    
+    def getNamesBySex(self, sexInput):
+        '''
+        Input: The desired sex for the child's name
+        Output: All entries of that sex
+        '''
+        names = []
+        for name in self.namesList:
+            if (str(name["Gender"]).lower() == sexInput.lower()):
+                names.append(name)
+        return names
 
 
 '''
