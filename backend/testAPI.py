@@ -53,6 +53,14 @@ class APITester(unittest.TestCase) :
         api = BabyNameAPI("Popular_Baby_Names.csv")
         self.assertEqual(len(api.getEthnicities(ethnicitiesList)), 0)
 
+    #test cases for first name searching method
+    def test_Common_Name_Input(self):
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertGreaterEqual(len(api.getNamesFromName("Aidan")), 1)
+
+    def test_Bad_String(self):
+        api = BabyNameAPI("Popular_Baby_Names.csv")
+        self.assertEqual(len(api.getNamesFromName("BALALBALSDFLABSDFL")), 0)
 
 
 

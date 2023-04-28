@@ -52,6 +52,16 @@ class BabyNameAPI:
                 names.append(name)
         return names
 
+    def getNamesFromName(self, nameInput):
+        '''
+        Input: A string for the desired name
+        Output: All entries in the dataset for that name
+        '''
+        names = []
+        for name in self.namesList:
+            if (str(name["Child's First Name"]).lower() == nameInput.lower()):
+                names.append(name)
+        return names
 
 
 '''
