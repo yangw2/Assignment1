@@ -56,12 +56,12 @@ class BabyNameAPI:
             exit()
         return connection
     
-    def getNameData(connection, name) :
-        #note - does not yet have intersection with other parameters
+    def getNameData(connection, name, years) :
+       
         try:
             cursor = connection.cursor()
-            query = "SELECT * FROM childnames WHERE childName=%s ORDER BY childName ASC"
-            cursor.execute(query, (name,))
+            query = "SELECT * FROM childnames WHERE childName=%s INTERSECT SELECT * FROM childnames WHERE yearOfBirth=%s INTERSECT SELECT * FROM childnames WHERE sex=%s INTERSECT SELECT * FROM childnames WHERE ethnicity=%s INTERSECT SELECT * FROM childnames WHERE amountNames=%s ORDER BY childName ASC"
+            cursor.execute(query, (name,years))
             return cursor.fetchall()
 
         except Exception as e:
