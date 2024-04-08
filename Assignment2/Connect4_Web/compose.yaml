@@ -1,0 +1,16 @@
+# Add a service for each of the two AI 
+
+services:
+    main:
+        build: ./main
+        ports:
+          - "80:5000"
+    aione:
+        build: ./aione
+        ports:
+          - "81:1234"
+    aitwo:
+        build: ./aitwo
+        ports:
+          - "82:1234"
+
